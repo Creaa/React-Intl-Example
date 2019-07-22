@@ -1,15 +1,25 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Navbar from "./components/Navbar/Navbar.jsx";
-import Intl from "./utils/Intl";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@material-ui/core/Typography"
 
-function App({ setLanguage }) {
+const App = () => {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = lng => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <div className="App">
-      <Navbar changeLanguageHandler={setLanguage} />
-      <Typography variant="h6">{Intl.messages["loremIpsum"]}</Typography>
+      <Navbar changeLanguageHandler={changeLanguage} />
+      <div className="App-intro">
+        <Typography>
+          {i18n.t('result')}
+        </Typography>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default App
